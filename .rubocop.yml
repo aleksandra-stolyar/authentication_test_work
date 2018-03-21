@@ -1,0 +1,21 @@
+AllCops:
+  TargetRubyVersion: 2.5
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  Exclude:
+    - db/migrate/*
+    - vendor//*
+    - bin/*
+Rails:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+LineLength:
+  Max: 120
+  Exclude:
+    - config//*
