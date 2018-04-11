@@ -1,0 +1,23 @@
+<h1>Users list</h1>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Avatar</th>
+    <th>Full name</th>
+    <th>Position</th>
+    <th>Email</th>
+    <th></th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td></td>
+      <td><%= user.avatar %></td>
+      <td><%= user.full_name %></td>
+      <td><%= user.position %></td>
+      <td><%= user.email %></td>
+      <td>!Change Role!</td>
+    </tr>
+  <% end %>
+</table>

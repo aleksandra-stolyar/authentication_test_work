@@ -2,14 +2,14 @@ require 'bcrypt'
 
 class User < ApplicationRecord
   include BCrypt
-  after_create :generate_authentication_token!
+  validates :email, presence: true
 
-  has_secure_password
+  def password
+    @password ||= Password.new(self.encrypted_password)
+  end
 
-  private
-  # Generate a session token
-  def generate_authentication_token!
-    self.authentication_token = Digest::SHA1.hexdigest("#{Time.now}-#{self.id}-#{self.updated_at}")
-    self.save
+  def password=(new_password)
+    @password = Password.create(new_password)
+    self.encrypted_password = @password
   end
 end
