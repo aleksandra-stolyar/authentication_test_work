@@ -14,7 +14,7 @@
   <% @users.each do |user| %>
     <tr>
       <td></td>
-      <td><%= user.avatar %></td>
+      <td><%= image_tag(user.avatar_url(:thumb)) if user.avatar? %></td>
       <td><%= user.full_name %></td>
       <td><%= user.position %></td>
       <td><%= user.email %></td>

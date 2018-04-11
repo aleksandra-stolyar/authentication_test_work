@@ -4,6 +4,8 @@ class User < ApplicationRecord
   include BCrypt
   validates :email, presence: true
 
+  mount_uploader :avatar, AvatarUploader
+
   def password
     @password ||= Password.new(self.encrypted_password)
   end
