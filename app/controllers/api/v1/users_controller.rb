@@ -8,7 +8,6 @@ module Api
       end
 
       def show
-
       end
 
       def new
@@ -23,9 +22,23 @@ module Api
         end
       end
 
+      def edit
+        @user = User.find(params[:id])
+      end
+
+      def update
+        @user = User.find(params[:id])
+        if @user.update(user_params)
+          redirect_to api_default_users_url
+        else
+          render 'edit'
+        end
+      end
+
       private
       def user_params
-        params.require(:user).permit(:email, :password, :encrypted_password)
+        params.require(:user)
+              .permit(:email, :password, :encrypted_password, :avatar, :full_name, :position)
       end
     end
   end
