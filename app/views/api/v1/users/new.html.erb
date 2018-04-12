@@ -7,6 +7,7 @@
   Position: <%= f.text_field :position %>
   Email: <%= f.text_field :email %>
   Password: <%= f.password_field :password %>
+  Role: <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
   <%= f.submit "Submit" %>
 
 <% end %>

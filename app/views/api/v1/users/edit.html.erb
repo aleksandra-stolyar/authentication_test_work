@@ -2,10 +2,11 @@
 
 <%= form_for @user, url: { action: "update" }, html: { multipart: true } do |f| %>
   Avatar: <%= f.file_field :avatar %>
-  <%= image_tag(@user.avatar_url) if @user.avatar? %>
+  <%= image_tag(@user.avatar_url(:thumb)) if @user.avatar? %>
   Full name: <%= f.text_field :full_name %>
   Position: <%= f.text_field :position %>
   Email: <%= f.text_field :email %>
+  Role: <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
   <%= f.hidden_field :avatar_cache %>
   <%= f.submit "Submit" %>
 <% end %>

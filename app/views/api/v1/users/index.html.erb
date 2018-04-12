@@ -8,7 +8,6 @@
     <th>Position</th>
     <th>Email</th>
     <th>Actions</th>
-    <th></th>
   </tr>
 
   <% @users.each do |user| %>
@@ -19,7 +18,6 @@
       <td><%= user.position %></td>
       <td><%= user.email %></td>
       <td><%= link_to "Edit", edit_api_default_user_path(user) %></td>
-      <th>!Change Role!</th>
     </tr>
   <% end %>
 </table>
