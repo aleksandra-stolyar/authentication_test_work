@@ -37,7 +37,7 @@ module Cms
     private
     def user_params
       params.require(:user)
-            .permit(:email, :password, :encrypted_password, :avatar, :full_name, :position, :role)
+            .permit(:email, :password, :password_confirmation, :avatar, :full_name, :position, :role)
     end
   end
 end
