@@ -17,7 +17,7 @@ module Cms
       @user = User.new(user_params)
       if @user.save
         flash[:notice] = t("user.create.success")
-        redirect_to api_default_users_url
+        redirect_to cms_users_url
       end
     end
 
@@ -28,7 +28,7 @@ module Cms
     def update
       @user = User.find(params[:id])
       if @user.update(user_params)
-        redirect_to api_default_users_url
+        redirect_to cms_users_url
       else
         render 'edit'
       end

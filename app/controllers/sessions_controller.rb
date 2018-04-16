@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def create
     authenticate!
-    redirect_to api_default_users_url
+    redirect_to cms_users_url
   end
 
   def destroy

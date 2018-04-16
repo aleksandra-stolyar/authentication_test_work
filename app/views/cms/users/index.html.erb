@@ -7,6 +7,7 @@
     <th>Full name</th>
     <th>Position</th>
     <th>Email</th>
+    <th>Role</th>
     <th>Actions</th>
   </tr>
 
@@ -17,7 +18,8 @@
       <td><%= user.full_name %></td>
       <td><%= user.position %></td>
       <td><%= user.email %></td>
-      <td><%= link_to "Edit", edit_api_default_user_path(user) %></td>
+      <td><%= user.role %></td>
+      <td><%= link_to "Edit", edit_cms_user_path(user) %></td>
     </tr>
   <% end %>
 </table>

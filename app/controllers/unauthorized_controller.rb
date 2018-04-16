@@ -9,7 +9,7 @@ class UnauthorizedController < ApplicationController
       message = request.env['warden.options'].fetch(:message, "unauthorized.user")
       flash.alert = I18n.t(message)
     end
-    redirect_to new_api_default_sessions_url
+    redirect_to new_sessions_url
     # render nothing: true, status: :unauthorized
   end
 end

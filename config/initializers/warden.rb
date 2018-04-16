@@ -1,6 +1,6 @@
 Rails.configuration.middleware.use RailsWarden::Manager do |manager|
   manager.default_strategies :password
-  manager.failure_app = Api::V1::UnauthorizedController
+  manager.failure_app = UnauthorizedController
 end
 
 # Setup Session Serialization

@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
 
-  root 'api/v1/sessions#new'
+  root 'sessions#new'
   namespace :api do
     api_version(
       module: 'V1',
       header: { name: 'Accept', value: 'application/vnd.servicesmanager.v1+json' },
       default: true
     ) do
-      resource :user
-      resource :service
+      resource :user, only: :show
+      resource :service, only: :show
     end
   end
 
