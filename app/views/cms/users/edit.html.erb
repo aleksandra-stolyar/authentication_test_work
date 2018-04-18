@@ -7,6 +7,7 @@
   Position: <%= f.text_field :position %>
   Email: <%= f.text_field :email %>
   Role: <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+  Give access to services: <%= f.collection_check_boxes :service_ids, Service.all, :id, :name %>
   <%= f.hidden_field :avatar_cache %>
   <%= f.submit "Submit" %>
 <% end %>

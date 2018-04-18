@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :role, inclusion: { in: ROLES }
 
+  has_and_belongs_to_many :services
+
   mount_uploader :avatar, AvatarUploader
 
   def password
