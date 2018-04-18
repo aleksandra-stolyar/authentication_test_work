@@ -9,6 +9,7 @@
   Password: <%= f.password_field :password %>
   Password confirmation: <%= f.password_field :password_confirmation %>
   Role: <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+  Give access to services: <%= f.collection_check_boxes :service_ids, Service.all, :id, :name %>
   <%= f.submit "Submit" %>
 
 <% end %>
