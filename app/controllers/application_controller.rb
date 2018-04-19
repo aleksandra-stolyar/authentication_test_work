@@ -17,5 +17,4 @@ class ApplicationController < ActionController::Base
   def authenticate!
     warden.authenticate(:password)
   end
-
 end

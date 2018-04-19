@@ -19,12 +19,12 @@ end
 Warden::Strategies.add(:password) do
   def valid?
     return false if request.get?
-    user_data = params.fetch("user", {})
-    !(user_data["email"].blank? || user_data["password"].blank?)
+    user_data = params.fetch('user', {})
+    !(user_data['email'].blank? || user_data['password'].blank?)
   end
 
   def authenticate!
     user = User.authenticate(params['username'], params['password'])
-    user.nil? ? fail!(message: "strategies.password.failed") : success!(user)
+    user.nil? ? fail!(message: 'strategies.password.failed') : success!(user)
   end
 end

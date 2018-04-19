@@ -9,12 +9,13 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :role, inclusion: { in: ROLES }
 
-  has_and_belongs_to_many :services
+  has_many :services_users, dependent: :destroy
+  has_many :services, through: :services_users
 
   mount_uploader :avatar, AvatarUploader
 
   def password
-    @password ||= Password.new(self.encrypted_password)
+    @password ||= Password.new(encrypted_password)
   end
 
   def password=(new_password)

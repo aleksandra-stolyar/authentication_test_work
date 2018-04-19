@@ -3,8 +3,8 @@ AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
   Exclude:
-    - db/migrate/*
-    - vendor//*
+    - db/**/*
+    - vendor/**/*
     - bin/*
 Rails:
   Enabled: true
@@ -17,5 +17,9 @@ Style/FrozenStringLiteralComment:
 
 LineLength:
   Max: 120
+  Exclude:
+    - config//*
+
+Style/ClassAndModuleChildren:
   Exclude:
     - config//*

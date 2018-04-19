@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root 'sessions#new'
   namespace :api do
     api_version(

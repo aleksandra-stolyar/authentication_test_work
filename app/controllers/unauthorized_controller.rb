@@ -6,7 +6,7 @@ class UnauthorizedController < ApplicationController
 
   def respond
     unless request.get?
-      message = request.env['warden.options'].fetch(:message, "unauthorized.user")
+      message = request.env['warden.options'].fetch(:message, 'unauthorized.user')
       flash.alert = I18n.t(message)
     end
     redirect_to new_sessions_url

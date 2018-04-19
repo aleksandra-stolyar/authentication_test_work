@@ -6,9 +6,6 @@ module Cms
       @users = User.all
     end
 
-    def show
-    end
-
     def new
       @user = User.new
     end
@@ -16,7 +13,7 @@ module Cms
     def create
       @user = User.new(user_params)
       if @user.save
-        flash[:notice] = t("user.create.success")
+        flash[:notice] = t('user.create.success')
         redirect_to cms_users_url
       end
     end
@@ -35,6 +32,7 @@ module Cms
     end
 
     private
+
     def user_params
       params.require(:user)
             .permit(:email, :password, :password_confirmation, :avatar, :full_name, :position, :role, service_ids: [])
