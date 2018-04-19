@@ -7,8 +7,8 @@ Rails.application.routes.draw do
       header: { name: 'Accept', value: 'application/vnd.servicesmanager.v1+json' },
       default: true
     ) do
-      resource :user, only: :show
-      resource :service, only: :show
+      resources :users, only: :show
+      resources :services, only: :show
     end
   end
 
