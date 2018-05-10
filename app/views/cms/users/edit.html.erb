@@ -6,8 +6,7 @@
   Full name: <%= f.text_field :full_name %>
   Position: <%= f.text_field :position %>
   Email: <%= f.text_field :email %>
-  Role: <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
-  Give access to services: <%= f.collection_check_boxes :service_ids, Service.all, :id, :name %>
+  Role: <%= f.collection_select :role_id, Role.all, :id, :decorated_name %>
   <%= f.hidden_field :avatar_cache %>
   <%= f.submit "Submit" %>
 <% end %>

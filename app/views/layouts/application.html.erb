@@ -10,7 +10,7 @@
 
   <body>
     <div class="container">
-      <%= render partial: 'layouts/header' %>
+      <%= render partial: 'layouts/header' if current_user%>
     </div>
     <div class="container">
       <div class="row" style="margin-top: 20%">

@@ -3,7 +3,11 @@ class SessionsController < ApplicationController
 
   def create
     authenticate!
-    redirect_to cms_users_url
+    if current_user.is_user?
+      redirect_to cms_services_url
+    else
+      redirect_to cms_users_url
+    end
   end
 
   def destroy

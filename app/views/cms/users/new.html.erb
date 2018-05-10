@@ -8,8 +8,7 @@
   Email: <%= f.text_field :email %>
   Password: <%= f.password_field :password %>
   Password confirmation: <%= f.password_field :password_confirmation %>
-  Role: <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
-  Give access to services: <%= f.collection_check_boxes :service_ids, Service.all, :id, :name %>
+  Role: <%= f.collection_select :role_id, Role.all, :id, :decorated_name %>
   <%= f.submit "Submit" %>
 
 <% end %>
