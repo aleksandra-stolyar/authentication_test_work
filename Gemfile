@@ -7,7 +7,6 @@ end
 
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
-gem 'cancancan', '~> 2.0'
 gem 'carrierwave', '~> 1.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'

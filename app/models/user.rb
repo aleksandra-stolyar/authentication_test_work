@@ -2,15 +2,13 @@ require 'bcrypt'
 
 class User < ApplicationRecord
   include BCrypt
-  ROLES = %w[super_admin user_admin user].freeze
   has_secure_password
 
   alias_attribute :password_digest, :encrypted_password
   validates :email, presence: true
-  validates :role, inclusion: { in: ROLES }
 
-  has_many :services_users, dependent: :destroy
-  has_many :services, through: :services_users
+  belongs_to :role
+  delegate :services, to: :role
 
   mount_uploader :avatar, AvatarUploader
 
@@ -21,5 +19,27 @@ class User < ApplicationRecord
   def password=(new_password)
     @password = Password.create(new_password)
     self.encrypted_password = @password
+  end
+
+  def method_missing(method_name, *args, &block)
+    if match = role_check(method_name)
+      role.name == match[1]
+    elsif match = permission_check?(method_name)
+      return true if permissions.include?(match[1])
+    else
+      super
+    end
+  end
+
+  def role_check(role)
+    /^is?_([a-zA-Z_]*)\?$/.match(role)
+  end
+
+  def permission_check?(permission)
+    /^can?_([a-zA-Z_]*)\?$/.match(permission.to_s)
+  end
+
+  def permissions
+    Role::PERMISSIONS_LIST[role.name.to_sym] || []
   end
 end

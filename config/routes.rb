@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   namespace :cms do
     resources :users
+    resources :services, only: [:index, :update] do
+      get '/:id/grant_access', on: :collection, to: 'services#grant_access', as: :grant_access
+    end
   end
   scope :users do
     resource :sessions, only: [:new, :create, :destroy]
