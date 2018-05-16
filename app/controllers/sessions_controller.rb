@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
-  skip_before_action :authenticate!
+  skip_before_action :authenticate!, only: :new
+
+  def new
+  end
 
   def create
-    authenticate!
     if current_user.is_user?
       redirect_to cms_services_url
     else

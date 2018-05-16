@@ -1,7 +1,5 @@
 module Cms
   class ServicesController < ApplicationController
-    skip_before_action :authenticate!
-
     def index
       @services= if current_user.is_user?
         current_user.services
@@ -24,6 +22,7 @@ module Cms
     end
 
     private
+
     def service_params
       params.require(:service).permit(role_ids: [])
     end

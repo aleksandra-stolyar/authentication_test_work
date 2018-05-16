@@ -1,22 +1,11 @@
-class UnauthorizedController < ActionController::Metal
-  include ActionController::UrlFor
-  include ActionController::Redirecting
-  include Rails.application.routes.url_helpers
-  include Rails.application.routes.mounted_helpers
+class UnauthorizedController < ApplicationController
+  skip_before_action :authenticate!
 
-  delegate :flash, to: :request
-
-  def self.call(env)
-    @respond ||= action(:respond)
-    @respond.call(env)
-  end
-
-  def respond
+  def unauthenticated
     unless request.get?
-      message = request.env['warden.options'].fetch(:message, 'unauthorized.user')
+      message = request.env['warden.options'].fetch(:message, 'unauthorized.user').fetch(:message)
       flash[:alert] = message
     end
     redirect_to new_sessions_url
-    # render nothing: true, status: :unauthorized
   end
 end

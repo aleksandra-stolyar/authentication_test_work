@@ -14,5 +14,5 @@ User.create!(
       password: '12qwaszx',
       full_name: 'Super Admin',
       position: 'best',
-      role_id: 1
+      role: Role.find_by(name: 'super_admin')
 )

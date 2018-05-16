@@ -1,11 +1,13 @@
 require 'bcrypt'
 
 class User < ApplicationRecord
-  include BCrypt
   has_secure_password
 
   alias_attribute :password_digest, :encrypted_password
-  validates :email, presence: true
+  validates :email, presence: true,
+                    format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  validates :password, presence: true,
+                       confirmation: true
 
   belongs_to :role
   delegate :services, to: :role
@@ -13,11 +15,11 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   def password
-    @password ||= Password.new(encrypted_password)
+    @password ||= BCrypt::Password.new(encrypted_password)
   end
 
   def password=(new_password)
-    @password = Password.create(new_password)
+    @password = BCrypt::Password.create(new_password)
     self.encrypted_password = @password
   end
 

@@ -1,7 +1,5 @@
 module Cms
   class UsersController < ApplicationController
-    skip_before_action :authenticate!
-
     def index
       @users = User.all
     end
@@ -15,6 +13,10 @@ module Cms
       if @user.save
         flash[:notice] = t('user.create.success')
         redirect_to cms_users_url
+      else
+        flash[:alert] = @user.errors.full_messages.uniq
+        @reset_user = User.new(user_params.except(:email, :password_confirmation))
+        render new_cms_user_path(@reset_user)
       end
     end
 

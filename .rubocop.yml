@@ -20,6 +20,14 @@ LineLength:
   Exclude:
     - config//*
 
+Metrics/BlockLength:
+  Exclude:
+    - config//*
+
 Style/ClassAndModuleChildren:
+  Exclude:
+    - config//*
+
+Style/SymbolArray:
   Exclude:
     - config//*

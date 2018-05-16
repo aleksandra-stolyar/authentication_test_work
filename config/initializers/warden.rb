@@ -1,6 +1,6 @@
 Rails.configuration.middleware.use RailsWarden::Manager do |manager|
   manager.default_strategies :password
-  manager.failure_app = UnauthorizedController
+  manager.failure_app = ->(env) { UnauthorizedController.action(:unauthenticated).call(env) }
 end
 
 # Declare your strategies here, or require a file that defines one.
@@ -12,7 +12,7 @@ Warden::Strategies.add(:password) do
   end
 
   def authenticate!
-    user = User.find_by_email(params[:session][:email])
+    user = User.find_by(email: params[:session][:email])
     return success!(user) if user && user.authenticate(params[:session][:password])
     fail!(message: I18n.t('strategies.password.failed'))
   end
