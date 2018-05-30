@@ -10,7 +10,11 @@ class User < ApplicationRecord
                        confirmation: true
 
   belongs_to :role
-  delegate :services, to: :role
+  has_many :user_services, dependent: :destroy
+  has_many :services, through: :user_services
+
+  scope :user_admin, -> { where(role: Role.find_by(name: 'user_admin')) }
+  scope :user,       -> { where(role: Role.find_by(name: 'user')) }
 
   mount_uploader :avatar, AvatarUploader
 
@@ -21,6 +25,10 @@ class User < ApplicationRecord
   def password=(new_password)
     @password = BCrypt::Password.create(new_password)
     self.encrypted_password = @password
+  end
+
+  def name_with_position
+    "#{full_name} | #{position}"
   end
 
   def method_missing(method_name, *args, &block)

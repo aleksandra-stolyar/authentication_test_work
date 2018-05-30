@@ -6,7 +6,9 @@
   Full name: <%= f.text_field :full_name %>
   Position: <%= f.text_field :position %>
   Email: <%= f.text_field :email %>
-  Role: <%= f.collection_select :role_id, Role.all, :id, :decorated_name %>
+  <% if current_user.is_super_admin? %>
+    Role: <%= f.collection_select :role_id, Role.all, :id, :decorated_name %>
+  <% end %>
   <%= f.hidden_field :avatar_cache %>
   <%= f.submit "Submit" %>
 <% end %>

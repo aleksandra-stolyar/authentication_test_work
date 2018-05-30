@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180421214231) do
+ActiveRecord::Schema.define(version: 20180529190139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,12 +34,21 @@ ActiveRecord::Schema.define(version: 20180421214231) do
     t.string   "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_services_on_user_id", using: :btree
   end
 
   create_table "services_users", id: false, force: :cascade do |t|
     t.integer "service_id", null: false
     t.integer "user_id",    null: false
     t.index ["service_id", "user_id"], name: "index_services_users_on_service_id_and_user_id", using: :btree
+  end
+
+  create_table "user_services", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "service_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

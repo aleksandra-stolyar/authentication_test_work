@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   protect_from_forgery with: :exception
   skip_before_action :verify_authenticity_token
   prepend_before_action :authenticate!
@@ -7,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :warden, :signed_in?, :current_user
 
   def signed_in?
-    !current_user.nil?
+    current_user.present?
   end
 
   def current_user
@@ -17,4 +16,8 @@ class ApplicationController < ActionController::Base
   def authenticate!
     warden.authenticate!
   end
+
+  # def authorize!
+
+  # end
 end

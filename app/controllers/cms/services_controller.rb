@@ -12,6 +12,10 @@ module Cms
       @service = Service.find(params[:id])
     end
 
+    def edit
+      @service = Service.find(params[:id])
+    end
+
     def update
       @service = Service.find(params[:id])
       if @service.update(service_params)

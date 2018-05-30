@@ -1,6 +1,6 @@
 class Service < ApplicationRecord
-  has_many :role_services, dependent: :destroy
-  has_many :roles, through: :role_services
+  belongs_to :admin, -> { user_admin }, class_name: 'User'
+  has_many :users, -> { user }
 
   mount_uploader :logo, LogoUploader
 end
