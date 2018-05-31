@@ -6,7 +6,7 @@
   </div>
   <div class="row">
     Users:
-    <%= f.collection_check_boxes(:user_id, User.user, :id, :name_with_position) do |c| %>
+    <%= f.collection_check_boxes :user_ids, User.user, :id, :name_with_position do |c|%>
       <div class="row">
         <%= c.check_box + c.text %>
       </div>

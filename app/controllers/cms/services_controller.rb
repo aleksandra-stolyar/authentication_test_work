@@ -18,17 +18,17 @@ module Cms
 
     def update
       @service = Service.find(params[:id])
-      if @service.update(service_params)
+      if @service.update_attributes(service_params)
         redirect_to cms_services_url
       else
-        render 'grant_access'
+        render 'edit'
       end
     end
 
     private
 
     def service_params
-      params.require(:service).permit(role_ids: [])
+      params.require(:service).permit(:user_id, user_ids: [])
     end
   end
 end

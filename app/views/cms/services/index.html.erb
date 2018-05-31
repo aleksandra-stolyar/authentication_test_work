@@ -6,6 +6,7 @@
     <th>Logo</th>
     <th>Name</th>
     <th>Link</th>
+    <th>Admin User</th>
     <th></th>
   </tr>
 
@@ -15,6 +16,7 @@
       <td><%= image_tag(service.logo_url(:thumb)) if service.logo? %></td>
       <td><%= service.name %></td>
       <td><%= service.link %></td>
+      <td><%= service.admin.full_name if service.admin %></td>
       <td><%= link_to "Add users", edit_cms_service_path(service) %></td>
     </tr>
   <% end %>
