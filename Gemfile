@@ -6,34 +6,31 @@ git_source(:github) do |repo_name|
 end
 
 gem 'active_model_serializers', '~> 0.10.0'
-gem 'bcrypt', '~> 3.1', '>= 3.1.11'
+gem 'bcrypt', '~> 3.1', '>= 3.1.11', require: false
 gem 'carrierwave', '~> 1.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
-gem 'mini_magick'
-gem 'pg', '~> 0.18'
-gem 'puma', '~> 3.0'
+gem 'mini_magick', '~> 4.8', require: false
+gem 'pg', '~> 0.21', require: false
+gem 'puma', '~> 3.11', require: false
 gem 'rails', '~> 5.0.6'
 gem 'rails_warden'
 gem 'rubocop', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
-gem 'uglifier', '>= 1.3.0'
 gem 'versionist'
 
 group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
-  gem 'pry-byebug'
+  gem 'pry-byebug', '~> 3.6', require: false
   gem 'rspec-rails', '~> 3.7'
 end
 
 group :development do
-  gem 'listen', '~> 3.0.5'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'listen', '~> 3.0', require: false
   gem 'web-console', '>= 3.3.0'
 end
 
