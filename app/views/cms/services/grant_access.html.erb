@@ -1,4 +1,0 @@
-<%= form_for @service, url: { action: "update" } do |f| %>
-  Give access to Roles: <%= f.collection_check_boxes :role_ids, Role.all, :id, :name %>
-  <%= f.submit "Submit" %>
-<% end %>

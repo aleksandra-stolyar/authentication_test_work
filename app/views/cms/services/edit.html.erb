@@ -1,9 +1,11 @@
 <h1>Add users to service</h1>
 
 <%= form_for @service, url: { action: "update" }, html: { multipart: true } do |f| %>
-  <div class="row">
-    Admin User: <%= f.collection_select :user_id, User.user_admin, :id, :name_with_position %>
-  </div>
+  <% if current_user.is_super_admin? %>
+    <div class="row">
+      Admin User: <%= f.collection_select :user_id, User.user_admin, :id, :name_with_position %>
+    </div>
+  <% end %>
   <div class="row">
     Users:
     <%= f.collection_check_boxes :user_ids, User.user, :id, :name_with_position do |c|%>

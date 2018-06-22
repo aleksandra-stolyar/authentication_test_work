@@ -1,6 +1,0 @@
-<% if current_user.can_read_all? %>
-  <%= link_to "Home", cms_users_path %>
-  <%= link_to "Services", cms_services_path %>
-  <%= link_to "Add new user", new_cms_user_path %>
-<% end %>
-<%= link_to "Logout", sessions_path, method: :delete %>

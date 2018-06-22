@@ -10,7 +10,12 @@
 
   <body>
     <div class="container">
-      <%= render partial: 'layouts/header' if current_user%>
+      <% if current_user && !current_user.is_user? %>
+        <%= render partial: 'layouts/common_header'%>
+      <% end %>
+      <% if signed_in? %>
+        <%= link_to "Logout", cms_logout_path, method: :delete %>
+      <% end %>
     </div>
     <div class="container">
       <div class="row" style="margin-top: 20%">
