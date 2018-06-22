@@ -9,14 +9,16 @@
   </head>
 
   <body>
-    <div class="container">
-      <% if current_user && !current_user.is_user? %>
-        <%= render partial: 'layouts/common_header'%>
-      <% end %>
-      <% if signed_in? %>
-        <%= link_to "Logout", cms_logout_path, method: :delete %>
-      <% end %>
-    </div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <% if current_user && !current_user.is_user? %>
+          <%= render partial: 'layouts/common_header'%>
+        <% end %>
+        <% if signed_in? %>
+          <%= link_to "Logout", cms_logout_path, method: :delete %>
+        <% end %>
+      </div>
+    </nav>
     <div class="container">
       <div class="row" style="margin-top: 20%">
         <div class="col-sm-6 col-sm-offset-3" >
