@@ -1,7 +1,6 @@
 module Api
   module V1
-    class ServicesController < ApplicationController
-      skip_before_action :authenticate!
+    class ServicesController < BaseController
       def show
         @service = Service.find(params[:id])
         render json: @service

@@ -1,5 +1,10 @@
 en:
   hello: "Hello world"
   strategies:
-    password:
-      failed: 'Invalid credentials.'
+    credentials:
+      blank: "Please fill in email and password to access service."
+      failed: "Invalid credentials."
+  errors:
+    messages:
+      not_found: "Record not found"
+      unauthorized: "You're not authorized to perform this action"

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'sessions#new'
+  root 'cms/services#index'
   namespace :api do
     api_version(
       module: 'V1',
@@ -14,8 +14,10 @@ Rails.application.routes.draw do
   namespace :cms do
     resources :users
     resources :services, only: [:index, :edit, :update]
-  end
-  scope :users do
-    resource :sessions, only: [:new, :create, :destroy]
+    controller :sessions do
+      get '/login' => :new
+      post '/login' => :create
+      delete '/logout' => :destroy
+    end
   end
 end

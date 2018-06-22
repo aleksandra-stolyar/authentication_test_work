@@ -1,15 +1,9 @@
 module Cms
-  class ServicesController < ApplicationController
-    def index
-      @services= if current_user.is_user?
-        current_user.services
-      else
-        Service.all
-      end
-    end
+  class ServicesController < BaseController
+    before_action :authorize!, except: :index, if: -> { current_user.is_user? }
 
-    def grant_access
-      @service = Service.find(params[:id])
+    def index
+      @services= current_user.is_super_admin? ? Service.all : current_user.own_services
     end
 
     def edit

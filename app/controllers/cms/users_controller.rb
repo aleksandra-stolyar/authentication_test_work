@@ -1,5 +1,10 @@
 module Cms
-  class UsersController < ApplicationController
+  class UsersController < BaseController
+    before_action do
+      authorize! if current_user.is_user? ||
+                    current_user.is_user_admin? && ['edit', 'destroy'].include?(action_name)
+    end
+
     def index
       @users = User.all
     end
@@ -31,6 +36,12 @@ module Cms
       else
         render 'edit'
       end
+    end
+
+    def destroy
+      @user = User.find(params[:id])
+      @user.destroy
+      redirect_to cms_users_url
     end
 
     private

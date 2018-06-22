@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :user_services, dependent: :destroy
   has_many :services, through: :user_services
 
+  has_many :managed_services, foreign_key: 'user_id', class_name: 'Service'
+
   scope :user_admin, -> { where(role: Role.find_by(name: 'user_admin')) }
   scope :user,       -> { where(role: Role.find_by(name: 'user')) }
 
@@ -31,11 +33,17 @@ class User < ApplicationRecord
     "#{full_name} | #{position}"
   end
 
+  def own_services
+    if self.is_user_admin?
+      managed_services
+    elsif self.is_user?
+      services
+    end
+  end
+
   def method_missing(method_name, *args, &block)
     if match = role_check(method_name)
       role.name == match[1]
-    elsif match = permission_check?(method_name)
-      return true if permissions.include?(match[1])
     else
       super
     end
@@ -43,13 +51,5 @@ class User < ApplicationRecord
 
   def role_check(role)
     /^is?_([a-zA-Z_]*)\?$/.match(role)
-  end
-
-  def permission_check?(permission)
-    /^can?_([a-zA-Z_]*)\?$/.match(permission.to_s)
-  end
-
-  def permissions
-    Role::PERMISSIONS_LIST[role.name.to_sym] || []
   end
 end
