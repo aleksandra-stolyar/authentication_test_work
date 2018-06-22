@@ -1,6 +1,6 @@
 <h1>Services list</h1>
 
-<table>
+<table class="table table-hover">
   <tr>
     <th>#</th>
     <th>Logo</th>
@@ -10,9 +10,9 @@
     <th></th>
   </tr>
 
-  <% @services.each do |service| %>
+  <% @services.each_with_index do |service, index| %>
     <tr>
-      <td></td>
+      <td><%= index+1 %></td>
       <td><%= image_tag(service.logo_url(:thumb)) if service.logo? %></td>
       <td><%= service.name %></td>
       <td><%= service.link %></td>
