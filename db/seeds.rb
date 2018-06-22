@@ -5,10 +5,6 @@
   link: Faker::Internet.url)
 end
 
-%w[super_admin user_admin user].each do |name|
-  Role.create!(name: name)
-end
-
 User.create!(
       email: 'superadmin@new.com',
       password: '12qwaszx',

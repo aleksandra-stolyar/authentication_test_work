@@ -25,7 +25,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
-  gem 'pry-byebug', '~> 3.6', require: false
+  gem 'pry-byebug', '~> 3.6'
   gem 'rspec-rails', '~> 3.7'
 end
 
