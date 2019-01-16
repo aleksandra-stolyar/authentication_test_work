@@ -1,19 +1,14 @@
 # README
 
-* Ruby version - ruby 2.5.0
+# System dependencies
 
-* System dependencies
+- ruby 2.5.0
 
-* Configuration
+Authorization service.
+API
+  - list services and users
+Service
+  - add user, choose user role
+  - add user to service
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Main goal - authentication with warden, custom authorization.
